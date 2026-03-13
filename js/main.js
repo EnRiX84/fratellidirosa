@@ -1,29 +1,10 @@
 /**
  * Fratelli Di Rosa - Main JavaScript
- * Smooth scroll, navbar, animazioni IntersectionObserver, mobile menu, form validation
+ * Smooth scroll, navbar, reveal animations, mobile menu, lightbox, form validation
  */
 
 (function () {
     'use strict';
-
-    // ========== HERO FLOATING PARTICLES ==========
-
-    var particlesContainer = document.getElementById('heroParticles');
-    if (particlesContainer) {
-        var shapes = ['circle', 'cross', 'diamond'];
-        for (var i = 0; i < 25; i++) {
-            var particle = document.createElement('div');
-            var shape = shapes[Math.floor(Math.random() * shapes.length)];
-            particle.classList.add('particle', 'particle--' + shape);
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particle.style.animationDuration = (6 + Math.random() * 6) + 's';
-            var size = 2 + Math.random() * 5;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particlesContainer.appendChild(particle);
-        }
-    }
 
     // ========== NAVBAR SCROLL BEHAVIOR ==========
 
@@ -218,9 +199,9 @@
         }, { passive: true });
     }
 
-    // ========== INTERSECTION OBSERVER - FADE IN ANIMATIONS ==========
+    // ========== INTERSECTION OBSERVER - REVEAL ANIMATIONS ==========
 
-    var animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+    var revealElements = document.querySelectorAll('.reveal-up, .reveal-stagger');
 
     if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(
@@ -238,11 +219,11 @@
             }
         );
 
-        animatedElements.forEach(function (el) {
+        revealElements.forEach(function (el) {
             observer.observe(el);
         });
     } else {
-        animatedElements.forEach(function (el) {
+        revealElements.forEach(function (el) {
             el.classList.add('visible');
         });
     }
